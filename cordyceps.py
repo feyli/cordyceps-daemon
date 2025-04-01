@@ -32,7 +32,7 @@ def command(data):
 def exit():
     print("Exiting...")
     sio.disconnect()
-    exit(0)
+    exit()
 
 
 # Connect to the server

