@@ -28,6 +28,13 @@ def command(data):
         sio.emit('error', str(e))
 
 
+@sio.event
+def exit():
+    print("Exiting...")
+    sio.disconnect()
+    exit(0)
+
+
 # Connect to the server
 print("Connecting to server...")
 sio.connect('https://cordyceps.feyli.me')
